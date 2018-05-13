@@ -2,7 +2,7 @@ git_url("https://github.com/bepro-company/signing-test.git")
 
 type("appstore") # The default type, can be: appstore, adhoc, enterprise or development
 
-# app_identifier(["com.bepro11.deployTest"])
+# app_identifier("com.bepro11.deployTest")
 # username("hjh5696@gmail.com") # Your Apple Developer Portal username
 
 # For all available options run `fastlane match --help`
