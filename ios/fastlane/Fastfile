@@ -18,7 +18,7 @@ platform :ios do
 
   desc "Build and run tests"
   lane :test do
-    scan(scheme: "DevOpsForRN")
+    scan(scheme: "deployTest")
   end
 
   lane :beta do
