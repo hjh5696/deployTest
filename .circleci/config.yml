@@ -28,11 +28,7 @@ jobs:
           path: ~/project
       - attach_workspace:
           at: ~/project
-      - run:
-          name: Set Ruby Version
-          command:  echo "ruby-2.4" > ~/.ruby-version
       - run: bundle update fastlane
-      - run: bundle install --path vendor/bundle
       - run: bundle exec fastlane beta
 
   ios:
