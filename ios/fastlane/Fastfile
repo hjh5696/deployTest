@@ -29,7 +29,7 @@ platform :ios do
     build_app(scheme: "deployTest")
     upload_to_testflight(skip_waiting_for_build_processing: true)
     slack(
-        slack_url: "https://hooks.slack.com/services/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"
+        slack_url: "https://hooks.slack.com/services/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",
         channel: "#x_app_issue",
         message: "Successfully uploaded to TestFlight"
     )
