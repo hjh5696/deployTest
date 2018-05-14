@@ -47,7 +47,7 @@ lane :increase_build_number_and_push_to_beta do |values|
     add_git_tag
     # Push the new commit and tag back to your git remote
     push_to_git_remote(
-        remote_branch: "beta", # optional, default is set to local_branch
+        remote_branch: "beta-ios", # optional, default is set to local_branch
         force: true,    # optional, default: false
     )
 end

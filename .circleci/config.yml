@@ -31,6 +31,32 @@ jobs:
       - run: bundle update fastlane
       - run: bundle exec fastlane beta
 
+  beta-deploy-android:
+    working_directory: ~/project/android
+    steps:
+      - checkout:
+          path: ~/project
+      - attach_workspace:
+          at: ~/project
+      - run: bundle update fastlane
+      - run: bundle exec fastlane beta
+
+  android:
+    working_directory: ~/project/android
+      steps:
+        - checkout:
+          path: ~/project
+        - attach_workspace:
+          at: ~/project
+        - run: bundle install --path vendor/bundle
+        - persist_to_workspace:
+          root: ~/project
+          paths:
+            - android
+        - run: bundle exec fastlane test
+        - store_test_results:
+          path: ~/project/android/reports
+
   ios:
     macos:
       xcode: "9.0"
@@ -63,6 +89,16 @@ workflows:
   node-android-ios:
     jobs:
       - build
+      - android:
+          requires:
+            - build
+      - beta-deploy-android:
+          filters:
+            branches:
+              only:
+                - beta-android
+          requires:
+            - android
       - ios:
           requires:
             - build
@@ -70,6 +106,6 @@ workflows:
           filters:
             branches:
               only:
-                - beta
+                - beta-ios
           requires:
             - ios
