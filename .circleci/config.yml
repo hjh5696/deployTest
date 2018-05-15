@@ -28,8 +28,8 @@ jobs:
           path: ~/project
       - attach_workspace:
           at: ~/project
-      - run: echo $ENCODED_KEYSTORE | base64 --decode >> ${HOME}/repo/keystore.jks
-      - run: echo 'export KEYSTORE=${HOME}/repo/keystore.jks' >> $BASH_ENV
+      - run: echo $ENCODED_KEYSTORE | base64 --decode >> /home/circleci/project/android/app/keystore.jks
+      - run: echo 'export KEYSTORE=/home/circleci/project/android/app/keystore.jks' >> $BASH_ENV
       - run: bundle update fastlane
       - run: bundle exec fastlane beta
 
