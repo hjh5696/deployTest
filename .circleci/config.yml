@@ -19,35 +19,35 @@ jobs:
       - store_test_results:
           path: ~/project/junit.xml
 
-  beta-deploy-android:
-    working_directory: ~/project/android
-    docker:
-      - image: circleci/android:api-27-node8-alpha
-    steps:
-      - checkout:
-          path: ~/project
-          - attach_workspace:
-             at: ~/project
-          - run: bundle update fastlane
-          - run: bundle exec fastlane beta
-
-#  android:
+#  beta-deploy-android:
 #    working_directory: ~/project/android
 #    docker:
 #      - image: circleci/android:api-27-node8-alpha
 #    steps:
 #      - checkout:
 #          path: ~/project
-#      - attach_workspace:
-#          at: ~/project
-#      - run: bundle install --path vendor/bundle
-#      - persist_to_workspace:
-#          root: ~/project
-#          paths:
-#            - android
-#      - run: bundle exec fastlane test
-#      - store_test_results:
-#          path: ~/project/android/reports
+#          - attach_workspace:
+#             at: ~/project
+#          - run: bundle update fastlane
+#          - run: bundle exec fastlane beta
+
+  android:
+    working_directory: ~/project/android
+    docker:
+      - image: circleci/android:api-27-node8-alpha
+    steps:
+      - checkout:
+          path: ~/project
+      - attach_workspace:
+          at: ~/project
+      - run: bundle install --path vendor/bundle
+      - persist_to_workspace:
+          root: ~/project
+          paths:
+            - android
+      - run: bundle exec fastlane test
+      - store_test_results:
+          path: ~/project/android/reports
 
   beta-deploy-ios:
     working_directory: ~/project/ios
